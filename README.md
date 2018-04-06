@@ -1,4 +1,4 @@
-# Bash Script Collection
+# LMC Bash Script Collection
 Handy bash scripts I've had to write here and there. Uploaded for reference and for others to ab/use. 
 
 - yum_auto_update_cron.sh
