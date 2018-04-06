@@ -4,11 +4,15 @@
 # Array of mount points to check
 mounts=( "/mnt/s3_assets" "/mnt/s3_packs" )
 
+AlertTo=you@domain.com
+
 for i in "${mounts[@]}"
 do
     if mountpoint -q $i; then
 	echo "$i mounted."
     else
-        echo "$i not mounted!"
+        echo "$i not mounted!" | mailx -s '$i NOT MOUNTED!!!' $AlertTo
    fi
 done
+
+exit
