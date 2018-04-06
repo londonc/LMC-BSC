@@ -1,7 +1,7 @@
 # Bash Script Collection
 Handy bash scripts I've had to write here and there. Uploaded for reference and for others to ab/use. 
 
-- yum_auto_updae_cron.sh
+- yum_auto_update_cron.sh
   
   Set as a nightly cron to keep your Redhat/Centos box continually updated. 
 
