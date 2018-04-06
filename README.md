@@ -4,6 +4,10 @@ Handy bash scripts I've had to write here and there. Uploaded for reference and 
 - yum_auto_update_cron.sh
   
   Set as a nightly cron to keep your Redhat/Centos box continually updated. 
+  
+- httpd_log_scan_and_ban.sh
+
+  Quick and dirty tool for scanning Apache logs for a sketchy request/s and blocking their ass automatically with IPtables.
 
 - httpd_monitor.sh
   
