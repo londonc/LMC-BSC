@@ -3,22 +3,22 @@
 # Quick and dirty tool for scanning Apache logs for a sketchy request/s and just blocking their ass automatically with IPtables.
 
 # What log are we scanning against
-LogLocale = "/var/log/httpd/access_log"
+LogLocale="/var/log/httpd/access_log"
 
 # How may lines deep do you want to scan against. 
-LogDepth = 5000
+LogDepth=5000
 
 # Specify the exact request you want to scan against.
-SearchString = "POST /auth/login"
+SearchString="POST /auth/login"
 
 # How many occurances before blocking.
-BlockThreshold = 4
+BlockThreshold=4
 
 # You can easily lock yourself out of your own system if you're not careful. Don't be that guy. Exluding local may not be a bad idea. 
-ExcludeIP= "127.0.0.1"
+ExcludeIP="127.0.0.1"
 
 # Who ya going to call? 
-AlertTo = you@domain.com
+AlertTo=you@domain.com
 
 
 # Read the last $LogDepth lines of Apaceh log where acitivty happens and see if any exceed the $BlockTreshold
