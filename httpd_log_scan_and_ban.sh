@@ -30,7 +30,7 @@ do
         if ! sudo iptables -L INPUT | grep -q $ip
         then
             # Add IP to block list. Goodbye. 
-            sudo iptables -A INPUT -s $ip -j DROP
+            sudo iptables -A INPUT -s $ip -j DROP -m comment --comment "Autobanned"
 
             # Sound the alarm
             iptables -L -n | mail -s "$ip made the following request more than $BlockThreshold times: '$SearchString'" $AlertTo
