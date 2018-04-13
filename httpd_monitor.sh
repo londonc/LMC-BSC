@@ -2,17 +2,23 @@
 # LMC 2017
 
 #Get count
-COUNT=$(/usr/bin/pgrep -x httpd|wc -l)
+Count=$(/usr/bin/pgrep -x httpd|wc -l)
 
-echo "${COUNT} apache processes found... "
+# Tune as needed for your environment
+CountThreshold=500
 
-if [ $COUNT -gt 0 ]
-then
- echo "Already running. Nothing to do. "
- exit
+AlertTo=londonc@isnweb.com
+
+if [ $Count -gt 0 ]; then
+	echo "Apache already running. Checking worker threshold..."
+	if [ $Count -lt $CountThreshold ]; then
+		echo "Everything is okay. "
+	else
+		echo "$CountThreshold exceeds threshold!" | mail -s "HTTP Monitor on $(uname -n)" $AlertTo
+	fi
 else
- echo "Restarting apache... "
- sudo /sbin/service httpd restart
+	echo "None found. Restarting apache... "
+	sudo /sbin/service httpd restart
 fi
 
 exit
