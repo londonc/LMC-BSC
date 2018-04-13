@@ -20,6 +20,7 @@ ExcludeIP= "127.0.0.1"
 # Who ya going to call? 
 AlertTo = you@domain.com
 
+
 # Read the last $LogDepth lines of Apaceh log where acitivty happens and see if any exceed the $BlockTreshold
 for ip in `sudo tail -n $LogDepth $LogLocale | grep $SearchString | awk "{print \\$1}" | sort -n | uniq -c | awk "{if (\\$1 > $BlockThreshold) print \\$2}"`;
 do 
@@ -30,7 +31,7 @@ do
         if ! sudo iptables -L INPUT | grep -q $ip
         then
             # Add IP to block list. Goodbye. 
-            sudo iptables -A INPUT -s $ip -j DROP -m comment --comment "Autobanned"
+            sudo iptables -A INPUT -s $ip -j DROP -m comment --comment "Banned at $(date +"%H:%M")"
 
             # Sound the alarm
             iptables -L -n | mail -s "$ip made the following request more than $BlockThreshold times: '$SearchString'" $AlertTo
