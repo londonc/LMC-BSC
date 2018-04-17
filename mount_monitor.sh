@@ -2,7 +2,7 @@
 # LMC
 
 # Array of mount points to check
-mounts=( "/mnt/s3_assets" "/mnt/s3_packs" )
+mounts=( "/mnt/drive2" "/mnt/drive3" )
 
 AlertTo=you@domain.com
 
@@ -14,5 +14,13 @@ do
         echo "$i not mounted!" | mailx -s '$i NOT MOUNTED!!!' $AlertTo
    fi
 done
+
+# Check if utiliization is greater than 90%
+SpaceCheck=$(df | awk '0+$5 >= 90 {print}')
+if [ -z "$SpaceCheck" ] ; then
+    echo "Utilization okay. "
+else
+    echo $SpaceCheck | mailx -s 'SPACE ISSUE!!!' $AlertTo
+fi
 
 exit
