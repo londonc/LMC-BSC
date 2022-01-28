@@ -7,7 +7,7 @@ Count=$(/usr/bin/pgrep -x httpd|wc -l)
 # Tune as needed for your environment
 CountThreshold=500
 
-AlertTo=londonc@isnweb.com
+AlertTo=you@domain.com
 
 if [ $Count -gt 0 ]; then
 	echo "Apache already running. Checking worker threshold..."
